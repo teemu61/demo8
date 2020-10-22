@@ -29,4 +29,9 @@ public class CarService {
         return carRepository.save(car);
     }
 
+    public List<Car> findCarByModel(String model) {
+        List<Car> carByModel = carRepository.findCarByModel(model);
+        return carByModel;
+    }
+
 }
