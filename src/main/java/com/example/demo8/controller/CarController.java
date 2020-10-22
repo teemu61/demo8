@@ -26,16 +26,8 @@ public class CarController {
     @GetMapping(value = "/all")
     @ResponseStatus(HttpStatus.OK)
     public List<CarDTO> getCars() {
-
-        List<CarDTO> carDtoList = new ArrayList<>();
-
-        List<Car> carList = carService.getCars();
-
-        for (Car c: carList) {
-            CarDTO carDTO = carMapper.carToCarDto(c);
-            carDtoList.add(carDTO);
-        }
-
-        return carDtoList;
+        return carService.getCars().stream()
+                .map(i -> carMapper.carToCarDto(i))
+                .collect(Collectors.toList());
     }
 }
