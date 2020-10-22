@@ -17,4 +17,6 @@ public class Car {
 
     String model;
 
+    Integer price;
+
 }

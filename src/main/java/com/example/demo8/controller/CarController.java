@@ -51,5 +51,9 @@ public class CarController {
     }
 
 
-
+    @GetMapping(value = "/price/{price}")
+    public List<CarDTO> findCarsBelowPrice(@PathVariable Integer price) {
+        return carService.findCarsBelowPrice(price).stream().map(i -> carMapper.carToCarDto(i)).collect(Collectors.toList());
+    }
+    
 }

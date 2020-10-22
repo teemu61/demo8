@@ -30,8 +30,11 @@ public class CarService {
     }
 
     public List<Car> findCarByModel(String model) {
-        List<Car> carByModel = carRepository.findCarByModel(model);
-        return carByModel;
+        return carRepository.findCarByModel(model);
+    }
+
+    public List<Car> findCarsBelowPrice(Integer price) {
+        return carRepository.findCarsBelowPrice(price);
     }
 
 }

@@ -8,4 +8,5 @@ import lombok.Data;
 public class CarDTO {
     Long id;
     String malli;
+    String hinta;
 }

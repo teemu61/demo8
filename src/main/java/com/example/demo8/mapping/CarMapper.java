@@ -9,9 +9,11 @@ import org.mapstruct.Mapping;
 public interface CarMapper {
 
     @Mapping(source="model", target="malli")
+    @Mapping(source="price", target="hinta")
     CarDTO carToCarDto(Car car);
 
     @Mapping(source="malli", target="model")
+    @Mapping(source="hinta", target="price")
     Car carDtoToCar(CarDTO carDTO);
 
 }
