@@ -11,4 +11,7 @@ public interface CarMapper {
     @Mapping(source="model", target="malli")
     CarDTO carToCarDto(Car car);
 
+    @Mapping(source="malli", target="model")
+    Car carDtoToCar(CarDTO carDTO);
+
 }

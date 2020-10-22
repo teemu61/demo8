@@ -22,9 +22,11 @@ public class CarService {
     }
 
     public List<Car> getCars() {
+        return carRepository.findAll();
+    }
 
-        List<Car> carList = carRepository.findAll();
-        return carList;
+    public Car addCar(Car car) {
+        return carRepository.save(car);
     }
 
 }
