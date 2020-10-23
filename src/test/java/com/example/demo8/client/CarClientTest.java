@@ -4,6 +4,7 @@ import com.example.demo8.domain.Car;
 import com.example.demo8.domain.CarDTO;
 import com.example.demo8.domain.Tire;
 import com.example.demo8.service.CarService;
+import com.example.demo8.service.TireService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,9 @@ class CarClientTest {
 
     @Autowired
     CarService carService;
+    
+    @Autowired
+    TireService tireService;
 
     @Test
     void testGetAll() {
@@ -48,10 +52,14 @@ class CarClientTest {
         //when
         Car carSaved = carService.addCar(car);
 
+        Long id = carSaved.getTireList().get(0).getId();
+        Tire tireById = tireService.getTireById(id);
+
         //then
         assertNotNull(car);
         assertEquals("volvo", carSaved.getModel());
         assertEquals(200, car.getTireList().get(0).getPrice());
+        assertEquals("nokia", tireById.getModel());
     }
 
     @Ignore
