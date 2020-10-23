@@ -37,4 +37,11 @@ public class CarService {
         return carRepository.findCarsBelowPrice(price);
     }
 
+    public void deleteAll() {
+
+        carRepository.findAll().forEach(i -> carRepository.delete(i));
+        carRepository.flush();
+
+    }
+
 }
