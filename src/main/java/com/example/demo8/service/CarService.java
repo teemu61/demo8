@@ -38,10 +38,7 @@ public class CarService {
     }
 
     public void deleteAll() {
-
         carRepository.findAll().forEach(i -> carRepository.delete(i));
-        carRepository.flush();
-
     }
 
 }

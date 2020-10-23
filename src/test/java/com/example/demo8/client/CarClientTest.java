@@ -2,15 +2,20 @@ package com.example.demo8.client;
 
 import com.example.demo8.domain.Car;
 import com.example.demo8.domain.CarDTO;
+import com.example.demo8.domain.Tire;
 import com.example.demo8.service.CarService;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -26,20 +31,30 @@ class CarClientTest {
     @Test
     void testGetAll() {
 
+        //given
         carService.deleteAll();
-        Car car1 = new Car();
-        car1.setModel("volvo");
-        car1.setPrice(10000);
-        carService.addCar(car1);
-        Car car2 = new Car();
-        car2.setModel("lada");
-        car2.setPrice(10000);
-        carService.addCar(car2);
+        Car car = new Car();
+        car.setModel("volvo");
+        car.setPrice(10000);
+        car.setTireList(new ArrayList<>());
+        Tire tire = new Tire();
+        tire.setModel("nokia");
+        tire.setPrice(200);
 
-        List<CarDTO> allCars = carClient.getAllCars();
-        assertEquals(2,allCars.size());
+        //create association on both directions!
+        tire.setCar(car);
+        car.getTireList().add(tire);
+
+        //when
+        Car carSaved = carService.addCar(car);
+
+        //then
+        assertNotNull(car);
+        assertEquals("volvo", carSaved.getModel());
+        assertEquals(200, car.getTireList().get(0).getPrice());
     }
 
+    @Ignore
     @Test
     void testCreate() {
 
