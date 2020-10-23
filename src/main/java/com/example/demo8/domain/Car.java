@@ -25,8 +25,7 @@ public class Car {
     String model;
     Integer price;
 
-    //with lacy loading when car it fetched it contains tireList=null
-    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Tire> tireList;
 
     //need to override to make @OneToMany to work correctly
